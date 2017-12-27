@@ -25,11 +25,11 @@ Note: All paths are relative to the project root.
 
 - `docker-compose exec nginx-php-grav php bin/grav install`
 
-- `docker-compose exec nginx-php-grav php bin/gpm install admin`
+- `docker-compose exec nginx-php-grav php bin/gpm install admin` (only initial install)
 
-- `docker-compose exec nginx-php-grav php bin/gpm install haywire`
+- `docker-compose exec nginx-php-grav php bin/gpm install haywire` (only initial install)
 
-- `cd user/themes/haywire`
+- `cd grav/user/themes/haywire`
 
 - `yarn && yarn run production`
 
