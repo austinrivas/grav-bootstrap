@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  nginx-php-grav:
+    container_name: crowd-up-grav
+    image: austinrivas/nginx-php-grav:1.0.0 # https://hub.docker.com/r/austinrivas/nginx-php-grav/
+    # Use these properties when testing this repo against locally built images
+    # build: ../nginx-php-grav
+    # image: nginx-php-grav:local-test
+    ports:
+      - "2222:22"
+      - "80:80"
+    volumes:
+      - "./grav:/usr/share/nginx/html/"
