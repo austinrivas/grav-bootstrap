@@ -42,7 +42,9 @@ Note: All paths are relative to the project root.
 
 - `./scripts/yarn-install.sh` (on initial setup only)
 
-- or `./scripts/build-local.sh`
+- `./scripts/build-local.sh`
+
+The application will launch your default browser at [http://localhost:8000](http://localhost:8000).
 
 ## Theme | [README](grav/user/themes/haywire/README.md) | [Github](https://github.com/robbinfellow/haywire-grav)
 
