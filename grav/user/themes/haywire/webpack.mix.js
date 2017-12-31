@@ -1,4 +1,4 @@
-let mix = require('laravel-mix');
+var mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,8 +12,22 @@ let mix = require('laravel-mix');
  */
 
 mix.setPublicPath('dist')
-   .js('js/app.js', 'js/app.js')
-   .sass('sass/app.sass', 'css/app.css')
-   .options({
-      processCssUrls: false
-    });
+    .js('js/app.js', 'js/app.js')
+    .sass('sass/app.sass', 'css/app.css')
+    .options({
+        processCssUrls: false
+    })
+    .version();
+
+if (!mix.inProduction()) {
+    mix.webpackConfig({devtool: 'inline-source-map'})
+        .browserSync({
+            proxy: 'localhost',
+            port: 8000,
+            files: [
+                'dist/css/{*,**/*}.css',
+                'dist/js/{*,**/*}.js',
+                'templates/{*,**/*}.html.twig'
+            ]
+        });
+}
