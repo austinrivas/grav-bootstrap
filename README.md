@@ -159,6 +159,16 @@ The `.ssh`, `grav`, and `nginx` directories are all mounted external volumes of 
   
 ## Known Issues
 
+### File Permissions due to running `composer` as `root`
+
+Currently the application runs `composer` as `root` in the `nginx-php-grav` `docker` container.
+
+This is incorrect and the the `docker` container should create a specific user for running `composer` commands and the `php` runtime.
+
+The current workaround to this is the `chown -R 777 ./grav` which is not ideal as it removes all permissions control from the application directory and relies entirely on `nginx` to prevent unpriveleged execution.
+
+Resolving this is a top priority.
+
 ### Docker Port Already in Use
 
 If after you run `docker-compose up` you see an error like:
