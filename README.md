@@ -1,4 +1,4 @@
-# Crowd Up
+# Grav Bootstrap
 
 This application uses the Grav flat-file cms to serve a static web application via a nginx-php-grav docker image.
 
