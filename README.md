@@ -1,6 +1,6 @@
 # Grav Bootstrap
 
-This application uses the Grav flat-file cms to serve a static web application via a nginx-php-grav docker image.
+This application uses the Grav flat-file cms to serve a static web application via a [`nginx-php-grav`](https://hub.docker.com/r/austinrivas/nginx-php-grav/) docker image.
 
 The scope of the application is to serve as a viable CMS for pages, blog posts, custom post types, and media assets while providing
 the ability to version control content/configuration changes.
@@ -9,18 +9,18 @@ the ability to version control content/configuration changes.
 
 The staging environment is a DigitalOcean droplet based on the prebuilt Docker configuration.
 
-The environment uses [`nvm`](https://github.com/creationix/nvm) to manage the `node` installation for building the front-end and has `docker`, `docker-compose`, and [`yarn`](https://yarnpkg.com/en/docs/install#linux-tab) installed.
+The environment uses [`nvm`](https://github.com/creationix/nvm) to manage the [Node v8.9 LTS](https://nodejs.org/en/) installation for building the front-end and has `docker`, `docker-compose`, and [`yarn`](https://yarnpkg.com/en/docs/install#linux-tab) installed.
 
-Deployment currently consists of ssh'ing into the root user for the droplet and pulling down changes from master and rebuilding the front-end.
+Deployment currently consists of `ssh`'ing into the root user for the droplet and pulling down changes from master and rebuilding the front-end.
 
 You can add the staging ip to your `/etc/hosts` declaration to allow shortcutting the ssh commands.
 
 * `ssh root@grav-bootstrap`
 * `cd repos/grav-bootstrap`
 * `git pull origin master`
-* `./scripts/grav-install.sh`
-* `./scripts/yarn-install.sh`
-* `./scripts/build-production.sh`
+* [`./scripts/grav-install.sh`](scripts/grav-install.sh)
+* [`./scripts/yarn-install.sh`](scripts/yarn-install.sh)
+* [`./scripts/build-production.sh`](scripts/build-production.sh)
 
 ## [Local Environment](http://localhost) | [Admin](http://localhost/admin)
 
@@ -38,11 +38,11 @@ Note: All paths are relative to the project root.
 
 - `docker-compose up -d`
 
-- `./scripts/grav-install.sh` (on initial setup only)
+- [`./scripts/grav-install.sh`](scripts/grav-install.sh) (on initial setup only)
 
-- `./scripts/yarn-install.sh` (on initial setup only)
+- [`./scripts/yarn-install.sh`](scripts/yarn-install.sh) (on initial setup only)
 
-- `./scripts/build-local.sh`
+- [`./scripts/build-local.sh`](scripts/build-local.sh)
 
 The application will launch your default browser at [http://localhost:8000](http://localhost:8000).
 
@@ -73,17 +73,17 @@ You can click the Update button to update plugins and themes. If you don't see a
 
 You can also update Grav manually by navigating to the root of the project in your terminal and running:
 
-- `./scripts/grav-upgrade.sh`
+- [`./scripts/grav-upgrade.sh`](scripts/grav-upgrade.sh)
 
 This will upgrade the Grav core to the latest version. Additionally, you should update all your plugins and themes to the latest version (including the admin plugin if you have that installed).
 
 You can do this using the command below:
 
-- `./scripts/grav-update-plugins.sh`
+- [`./scripts/grav-update-plugins.sh`](scripts/grav-update-plugins)
 
 ## Content
 
-All page content is stored in the `grav/user/pages` directory.
+All page content is stored in the [`grav/user/pages`](grav/user/pages) directory.
 
 For additional information on the function and capabilities of the `pages` directory see the [Grav Content Docs](https://learn.getgrav.org/content).
 
@@ -115,7 +115,7 @@ The admin portal url is defined in `login.yml` and is also available for managem
 
 #### User Management
 
-User management is done via the `bin/plugin login newuser` command and is described in further detail in the `login` plugin and this entry in the [Admin FAQ](https://learn.getgrav.org/admin-panel/faq#adding-and-managing-users).
+User management is done via the `docker-compose exec nginx-php-grav php bin/plugin login newuser` command and is described in further detail in the `login` plugin and this entry in the [Admin FAQ](https://learn.getgrav.org/admin-panel/faq#adding-and-managing-users).
 
 User accounts are not under version control and are stored in a yaml file named after their username e.g. `grav/user/accounts/someuser.yaml`.
 
@@ -134,10 +134,6 @@ TODO: Configure and test form in docker context
 # Docker Image | [Source](https://github.com/austinrivas/nginx-php-grav) | [Docker Hub](https://hub.docker.com/r/austinrivas/nginx-php-grav/)
 
 The `nginx-php-grav` docker image is used to serve this application.
-
-TODO: evaluate nginx config for hardening
-
-TODO: update nginx exclusion rules to return 403 for all file access in root that isn't required (LICENSE.txt, README.md, etc.)
 
 ## Volumes
 
@@ -165,7 +161,7 @@ The `.ssh`, `grav`, and `nginx` directories are all mounted external volumes of 
 
 ### Docker Port Already in Use
 
-If after you run `docker-compose up` you seen an error like:
+If after you run `docker-compose up` you see an error like:
 
 ```bash
 Starting grav-bootstrap ... 
@@ -187,6 +183,7 @@ TODO: Bind container to a static ip locally and use a hosts declaration to avoid
 
 ## TODOS
 
+- update nginx exclusion rules to return 403 for all file access in root that isn't required (LICENSE.txt, README.md, etc.)
 - split monolithic docker service into linked containers for nginx, php, and node.
 - user docker-machine to automate droplet provisioning
 - figure out ssl
