@@ -193,6 +193,8 @@ TODO: Bind container to a static ip locally and use a hosts declaration to avoid
 
 ## TODOS
 
+- figure out way to reliable implement this bootstrap and maintain the ability to update downstream.
+- diverge from haywire theme and add support for sketch -> theme exports
 - update nginx exclusion rules to return 403 for all file access in root that isn't required (LICENSE.txt, README.md, etc.)
 - split monolithic docker service into linked containers for nginx, php, and node.
 - user docker-machine to automate droplet provisioning
