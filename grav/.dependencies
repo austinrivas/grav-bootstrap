@@ -11,10 +11,6 @@ git:
         url: https://github.com/getgrav/grav-plugin-markdown-notices
         path: user/plugins/markdown-notices
         branch: master
-    antimatter:
-        url: https://github.com/getgrav/grav-theme-antimatter
-        path: user/themes/antimatter
-        branch: master
 links:
     problems:
         src: grav-plugin-problems
@@ -27,8 +23,4 @@ links:
     markdown-notices:
         src: grav-plugin-markdown-notices
         path: user/plugins/markdown-notices
-        scm: github
-    antimatter:
-        src: grav-theme-antimatter
-        path: user/themes/antimatter
         scm: github

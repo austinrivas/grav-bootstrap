@@ -2,6 +2,7 @@
 .sass-cache
 composer.lock
 cache/*
+dist/*
 assets/*
 logs/*
 images/*
